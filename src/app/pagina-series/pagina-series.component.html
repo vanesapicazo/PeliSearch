@@ -1,0 +1,35 @@
+<div class="container bg-azul">
+  <h1 class="oswald-font">Series populares</h1>
+</div>
+
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-6 g-4">
+    @for (serie of series(); track serie.id) {
+
+    <div class="col">
+      <div
+        class="card position-relative cursor-pointer"
+        (click)="serieSeleccionada(serie.id)"
+      >
+        <img
+          src="https://image.tmdb.org/t/p/w500{{ serie.poster_path }}"
+          class="card-img-top"
+          alt="{{ serie.name }}"
+        />
+
+        <div class="rating-badge">
+          <i class="bi bi-star-fill" style="color: #ffc300"></i>
+          {{ serie.vote_average | number : "1.1-1" }}
+        </div>
+
+        <div class="card-body">
+          <h5 class="card-title" title="{{ serie.name }}">
+            {{ serie.name }}
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    }
+  </div>
+</div>

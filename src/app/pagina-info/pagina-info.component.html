@@ -1,0 +1,103 @@
+@if ((datosPelicula() && datosPelicula().backdrop_path) || (datosSerie() &&
+datosSerie().backdrop_path)) {
+<div class="text-center">
+  <div class="image-container">
+    <img
+      src="https://image.tmdb.org/t/p/w500{{
+        tipo() === 'pelicula'
+          ? datosPelicula()?.backdrop_path || ''
+          : datosSerie()?.backdrop_path || ''
+      }}"
+      alt="Imagen Horizontal"
+      class="image-horizontal img-fluid"
+    />
+    <div class="overlay d-flex align-items-center">
+      <img
+        src="https://image.tmdb.org/t/p/w500{{
+          tipo() === 'pelicula'
+            ? datosPelicula()?.poster_path || ''
+            : datosSerie()?.poster_path || ''
+        }}"
+        alt="Imagen Vertical"
+        class="image-vertical"
+      />
+      <div class="text-container">
+        <h2>
+          {{
+            tipo() === "pelicula"
+              ? datosPelicula()?.title || "--"
+              : datosSerie()?.name || "--"
+          }}
+        </h2>
+        <p class="dato-style">Fecha de estreno:</p>
+        <p class="fecha-style">
+          {{
+            tipo() === "pelicula"
+              ? datosPelicula()?.release_date || "--"
+              : datosSerie()?.first_air_date || "--"
+          }}
+        </p>
+        <p class="dato-style">Sinopsis:</p>
+        <div class="overview">
+          <p>
+            {{
+              tipo() === "pelicula"
+                ? datosPelicula()?.overview || "--"
+                : datosSerie()?.overview || "--"
+            }}
+          </p>
+        </div>
+
+        <p class="dato-style">Géneros:</p>
+        <div class="generos-style">
+          @for (genero of (tipo() === 'pelicula' ? datosPelicula()?.genres :
+          datosSerie()?.genres); track genero?.name) { @if (genero) {
+          <span>
+            {{ genero.name }}
+            {{
+              genero !==
+              (tipo() === "pelicula"
+                ? datosPelicula()?.genres
+                : datosSerie()?.genres
+              )?.slice(-1)[0]
+                ? ", "
+                : ""
+            }}
+          </span>
+          } @else {
+          <span>--</span>
+          } }
+        </div>
+        <p class="dato-style">Puntuación:</p>
+        <span class="puntuacion-style">
+          <i class="bi bi-star-fill" style="color: #ffc300"></i>
+          {{ datosPelicula()?.vote_average || datosSerie()?.vote_average }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="informacion-adicional">
+    <p class="dato-style">Productoras</p>
+    <div class="logos">
+      @for (productora of (tipo() === 'pelicula' ?
+      datosPelicula()?.production_companies : datosSerie()?.networks); track
+      productora) { @if (productora) {
+      <span>
+        @if (productora.logo_path) {
+        <img
+          src="https://image.tmdb.org/t/p/w500{{ productora.logo_path }}"
+          class="logo-productora-style"
+        />
+        } @else {
+        <span class="logo-creado">{{ productora.name }}</span>
+        }
+      </span>
+      } @else {
+      <span>--</span>
+      } }
+    </div>
+  </div>
+</div>
+} @else {
+<h1>Cargando datos...</h1>
+}

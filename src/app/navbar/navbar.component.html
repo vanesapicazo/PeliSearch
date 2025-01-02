@@ -1,0 +1,106 @@
+<nav class="navbar navbar-expand-lg bg-primary w-100 mb-4">
+  <div class="container-fluid mx-4">
+    <a class="navbar-brand anton-sc-regular" href="#">PeliSearch</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isNavbarCollapsed = !isNavbarCollapsed"
+      [attr.aria-expanded]="!isNavbarCollapsed"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse"
+      [ngClass]="{ show: !isNavbarCollapsed }"
+      id="navbarSupportedContent"
+    >
+      <ul class="navbar-nav nav nav-underline me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            aria-current="page"
+            routerLinkActive="active"
+            [routerLink]="['/pagina-home']"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLink]="['/pagina-peliculas']"
+            >Películas</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLink]="['/pagina-series']"
+            >Series</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            [routerLink]="['/pagina-tendencias']"
+            >Tendencias</a
+          >
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            routerLinkActive="active"
+            role="button"
+            (click)="isDropdownOpen = !isDropdownOpen"
+            [attr.aria-expanded]="isDropdownOpen"
+          >
+            Géneros
+          </a>
+          <ul
+            class="dropdown-menu"
+            [ngClass]="{ show: isDropdownOpen }"
+            aria-labelledby="dropdownMenuButton"
+          >
+            @for (genero of generos(); track genero.id){
+            <form (ngSubmit)="generoSeleccionado(genero.id, genero.name)">
+              <li>
+                <a
+                  class="dropdown-item"
+                  [routerLink]="['/pagina-generos']"
+                  [queryParams]="{
+                    generoId: genero.id,
+                    generoName: genero.name
+                  }"
+                  (click)="
+                    isDropdownOpen = false;
+                    isNavbarCollapsed = true;
+                    generoSeleccionado(genero.id, genero.name)
+                  "
+                >
+                  {{ genero.name }}
+                </a>
+              </li>
+            </form>
+            }
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" role="search" (ngSubmit)="buscar()">
+        <input
+          name="buscar"
+          [(ngModel)]="parametroBusqueda"
+          class="form-control me-2"
+          type="search"
+          placeholder="Buscar..."
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-dark" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>

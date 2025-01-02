@@ -1,0 +1,35 @@
+<div class="container bg-azul">
+  <h1 class="oswald-font">
+    Búsqueda de películas y series con "{{ this.search() }}"
+  </h1>
+</div>
+
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-6 g-4">
+    @for (pelicula of peliculas(); track pelicula.id) {
+    <div class="col">
+      <div
+        class="card position-relative cursor-pointer"
+        (click)="seleccionarElemento(pelicula)"
+      >
+        <img
+          src="https://image.tmdb.org/t/p/w500{{ pelicula.poster_path }}"
+          class="card-img-top"
+          alt="{{ pelicula.title || pelicula.name }}"
+        />
+
+        <div class="rating-badge">
+          <i class="bi bi-star-fill" style="color: #ffc300"></i>
+          {{ pelicula.vote_average | number : "1.1-1" }}
+        </div>
+
+        <div class="card-body">
+          <h5 class="card-title" title="{{ pelicula.title || pelicula.name }}">
+            {{ pelicula.title || pelicula.name }}
+          </h5>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

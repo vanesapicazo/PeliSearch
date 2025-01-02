@@ -1,0 +1,159 @@
+<div id="carousel" class="carousel slide mt-1 mb-5 carousel-medida">
+  <div class="carousel-indicators">
+    @for (pelicula of peliculasPopulares(); track pelicula.id; let i = $index,
+    first = $first) {
+    <button
+      type="button"
+      data-bs-target="#carousel"
+      [attr.data-bs-slide-to]="i"
+      [class.active]="first"
+    ></button>
+    }
+  </div>
+  <div class="carousel-inner">
+    @for (pelicula of peliculasPopulares(); track pelicula.id; let i = $index,
+    first = $first) {
+    <div class="carousel-item carousel-img" [class.active]="first">
+      <img
+        src="https://image.tmdb.org/t/p/w500/{{ pelicula.backdrop_path }}"
+        class="d-block w-100 rounded"
+      />
+      <div class="carousel-caption d-none d-md-block">
+        <h2>{{ pelicula.title }}</h2>
+      </div>
+    </div>
+    }
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carousel"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carousel"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<div class="container bg-azul">
+  <h1 class="oswald-font">Mejor valoradas</h1>
+</div>
+
+<div class="container mb-5">
+  <div class="row row-cols-1 row-cols-md-6 g-4">
+    @for (pelicula of peliculasPopulares().slice(0, 6); track pelicula.id) {
+    <form (ngSubmit)="peliculaSeleccionada(pelicula.id)">
+      <div class="col">
+        <div
+          class="card position-relative cursor-pointer"
+          (click)="peliculaSeleccionada(pelicula.id)"
+        >
+          <img
+            src="https://image.tmdb.org/t/p/w500{{ pelicula.poster_path }}"
+            class="card-img-top"
+            alt="{{ pelicula.title }}"
+          />
+
+          <div class="rating-badge">
+            <i class="bi bi-star-fill" style="color: #ffc300"></i>
+            {{ pelicula.vote_average | number : "1.1-1" }}
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title" title="{{ pelicula.title }}">
+              {{ pelicula.title }}
+            </h5>
+          </div>
+        </div>
+      </div>
+    </form>
+    }
+  </div>
+</div>
+
+<div class="container bg-azul">
+  <h1 class="oswald-font">En emisión</h1>
+</div>
+
+<div class="container mb-5">
+  <div class="row row-cols-1 row-cols-md-6 g-4">
+    @for (peliculaEnEmision of peliculasEnEmision().slice(0, 6); track
+    peliculaEnEmision.id) {
+    <form (ngSubmit)="peliculaSeleccionada(peliculaEnEmision.id)">
+      <div class="col">
+        <div
+          class="card position-relative cursor-pointer"
+          (click)="peliculaSeleccionada(peliculaEnEmision.id)"
+        >
+          <img
+            src="https://image.tmdb.org/t/p/w500{{
+              peliculaEnEmision.poster_path
+            }}"
+            class="card-img-top"
+            alt="{{ peliculaEnEmision.title }}"
+          />
+
+          <div class="rating-badge">
+            <i class="bi bi-star-fill" style="color: #ffc300"></i>
+            {{ peliculaEnEmision.vote_average | number : "1.1-1" }}
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title" title="{{ peliculaEnEmision.title }}">
+              {{ peliculaEnEmision.title }}
+            </h5>
+          </div>
+        </div>
+      </div>
+    </form>
+    }
+  </div>
+</div>
+
+<div class="container bg-azul">
+  <h1 class="oswald-font">Próximamente</h1>
+</div>
+
+<div class="container mb-5">
+  <div class="row row-cols-1 row-cols-md-6 g-4">
+    @for (peliculaProxima of peliculasProximamente().slice(0, 6); track
+    peliculaProxima.id) {
+    <form (ngSubmit)="peliculaSeleccionada(peliculaProxima.id)">
+      <div class="col">
+        <div
+          class="card position-relative cursor-pointer"
+          (click)="peliculaSeleccionada(peliculaProxima.id)"
+        >
+          <img
+            src="https://image.tmdb.org/t/p/w500{{
+              peliculaProxima.poster_path
+            }}"
+            class="card-img-top"
+            alt="{{ peliculaProxima.title }}"
+          />
+
+          <div class="rating-badge">
+            <i class="bi bi-star-fill" style="color: #ffc300"></i>
+            {{ peliculaProxima.vote_average | number : "1.1-1" }}
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-title" title="{{ peliculaProxima.title }}">
+              {{ peliculaProxima.title }}
+            </h5>
+          </div>
+        </div>
+      </div>
+    </form>
+    }
+  </div>
+</div>
