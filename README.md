@@ -1,59 +1,66 @@
-# ProyectoFinal
+# 🎬 PeliSearch
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+This project is a web application built with [Angular](https://angular.dev/) that allows you to explore a catalog of movies and TV series.  
+You can search by title and view detailed information such as synopsis, release year, and rating.
 
-## Development server
+## ✨ Features
 
-To start a local development server, run:
+- **Quick search** for movies and series by name.  
+- **Detailed view** with synopsis, rating, and release year.  
+- **Fast loading** thanks to Angular and resource optimization.
 
-```bash
-ng serve
-```
+## 📷 Screenshots
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Here are some screenshots of the application in action:
 
-## Code scaffolding
+![Home Screen](./screenshots/home.png)  
+*Main catalog view showing popular movies and series.*
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+![Search Results](./screenshots/search-results.png)  
+*Search results displaying matched titles.*
 
-```bash
-ng generate component component-name
-```
+![Details View](./screenshots/details.png)  
+*Detailed information of a selected movie or series.*
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 📦 Installation & Setup
 
-```bash
-ng generate --help
-```
+To set up and run the project locally, follow these steps:
 
-## Building
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/vanesapicazo/PeliSearch.git
+   cd pelisearch
 
-To build the project run:
+2. Install dependencies:
+   ```bash
+   npm install
 
-```bash
-ng build
-```
+3. ⚠ Important: Create the environment.ts file
+   Before running the project, create a folder named environments inside src/app and add a file named environment.ts with the following content:
+   ```bash
+   export const environment = {
+    apiKey: 'YOUR_TMDB_API_KEY',
+   };
+  Replace YOUR_TMDB_API_KEY with your TMDB API key. You can get one for free by creating an account on TMDB.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+4. Start the development server:
+   ```bash
+    ng serve
+Once the server is running, open your browser and go to http://localhost:4200/. The application will automatically reload whenever you modify any of the source files.
 
-## Running unit tests
+##  🛠 Technologies Used
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- **Angular:** Frontend framework
+- **TypeScript:**  Programming language
+- **Bootstrap:** UI styling and layout
+- **TMDB API:** Movie and TV series data
 
-```bash
-ng test
-```
+##  📌 Future Improvements
 
-## Running end-to-end tests
+- Favorites list
+- Pagination for long result lists
 
-For end-to-end (e2e) testing, run:
+##  🤝 Contributing
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Feel free to fork the repository and submit pull requests.
+Suggestions and bug reports are welcome.
